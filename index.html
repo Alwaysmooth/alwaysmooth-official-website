@@ -1,728 +1,233 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smoothia - Premium Tissue Paper</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #3BA3A9;
-            --primary-light: #E6F4F5;
-            --dark: #1A3B44;
-            --gray: #666;
-            --light-gray: #f8fafa;
-            --white: #ffffff;
-        }
-
-        body {
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        /* Header & Navigation */
-        header {
-            background: var(--white);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .logo {
-            font-family: 'Brush Script MT', cursive;
-            font-size: 2rem;
-            color: var(--primary);
-        }
-
-        .logo-tagline {
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            display: block;
-            text-align: center;
-            color: var(--dark);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            font-size: 0.85rem;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--gray);
-            transition: color 0.3s;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--primary);
-        }
-
-        .cta-button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background 0.3s;
-        }
-
-        .cta-button:hover {
-            background: #2d8a8f;
-        }
-
-        /* Hero Section */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding: 3rem 5%;
-            align-items: center;
-            gap: 3rem;
-            background: linear-gradient(to right, var(--white) 50%, var(--light-gray) 50%);
-        }
-
-        .hero-badge {
-            color: var(--dark);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .hero-badge::before {
-            content: "✓";
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-        }
-
-        .hero h1 {
-            font-size: 2.2rem;
-            line-height: 1.3;
-            margin-bottom: 1rem;
-        }
-
-        .hero h1 span {
-            color: var(--primary);
-            display: block;
-        }
-
-        .hero p {
-            color: var(--gray);
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            padding: 0.7rem 1.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-        }
-
-        .hero-features {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-
-        .feature-icon {
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        .hero-image {
-            text-align: center;
-        }
-
-        .hero-image img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Products Section */
-        .products-section {
-            padding: 4rem 5%;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: "";
-            width: 40px;
-            height: 2px;
-            background: var(--primary);
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-subtitle {
-            color: var(--gray);
-            font-size: 0.85rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .product-card {
-            background: var(--light-gray);
-            padding: 1.5rem;
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-card img {
-            max-width: 120px;
-            margin-bottom: 1rem;
-        }
-
-        .product-card h3 {
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-card p {
-            font-size: 0.75rem;
-            color: var(--gray);
-            margin-bottom: 1rem;
-        }
-
-        .product-card a {
-            color: var(--primary);
-            font-size: 0.8rem;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        /* Why Choose Us Section */
-        .why-choose-section {
-            padding: 3rem 5%;
-            text-align: center;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .feature-box {
-            text-align: center;
-        }
-
-        .feature-icon {
-            color: var(--primary);
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .feature-box h4 {
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-box p {
-            font-size: 0.75rem;
-            color: var(--gray);
-            line-height: 1.4;
-        }
-
-        /* About & Wholesale Section */
-        .about-wholesale-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .about-section {
-            padding: 3rem 5%;
-            background: var(--light-gray);
-        }
-
-        .about-section h2 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .about-section p {
-            font-size: 0.85rem;
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-image {
-            width: 100%;
-            height: 200px;
-            background: #ddd;
-            margin: 1rem 0;
-            background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .btn-learn-more {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-        }
-
-        .wholesale-section {
-            background: linear-gradient(rgba(59, 163, 169, 0.9), rgba(59, 163, 169, 0.9)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 3rem 5%;
-        }
-
-        .wholesale-section h3 {
-            margin-bottom: 1rem;
-        }
-
-        .wholesale-section p {
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .wholesale-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .wholesale-btn-primary {
-            background: white;
-            color: var(--primary);
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .wholesale-btn-secondary {
-            background: transparent;
-            color: white;
-            border: 1px solid white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .wholesale-features {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-        }
-
-        .wholesale-feature {
-            text-align: center;
-            font-size: 0.75rem;
-        }
-
-        .wholesale-feature-icon {
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-        }
-
-        /* Newsletter Section */
-        .newsletter-section {
-            padding: 2rem 5%;
-            background: var(--light-gray);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .newsletter-title {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .newsletter-icon {
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 0;
-        }
-
-        .newsletter-input {
-            padding: 0.6rem 1rem;
-            border: 1px solid #ddd;
-            border-right: none;
-            border-radius: 4px 0 0 4px;
-            width: 250px;
-        }
-
-        .newsletter-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0 1.2rem;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-        }
-
-        /* Footer */
-        footer {
-            padding: 3rem 5%;
-            background: white;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 2rem;
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-
-        .footer-logo {
-            font-family: 'Brush Script MT', cursive;
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-col h4 {
-            font-size: 0.85rem;
-            color: var(--dark);
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col li {
-            margin-bottom: 0.3rem;
-        }
-
-        .footer-col a {
-            color: var(--gray);
-            text-decoration: none;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 0.8rem;
-            margin-top: 1rem;
-        }
-
-        .social-icon {
-            color: var(--primary);
-            font-size: 1rem;
-        }
-
-        .copyright {
-            grid-column: 1 / -1;
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid #eee;
-            text-align: center;
-            font-size: 0.7rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero, .about-wholesale-section {
-                grid-template-columns: 1fr;
-            }
-
-            footer {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            nav ul {
-                display: none;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            Smoothia
-            <span class="logo-tagline">SOFT AS SILK</span>
+export default function HomePage() {
+  const products = [
+    {
+      title: 'Toilet Tissue',
+      desc: 'Soft, thick and comfortable for daily use.',
+      image:
+        'https://images.unsplash.com/photo-1583947582886-f40ec95dd752?q=80&w=1200&auto=format&fit=crop',
+    },
+    {
+      title: 'Facial Tissue',
+      desc: 'Gentle and skin-friendly premium tissue.',
+      image:
+        'https://images.unsplash.com/photo-1583947215259-38e31be8751f?q=80&w=1200&auto=format&fit=crop',
+    },
+    {
+      title: 'Kitchen Towel',
+      desc: 'Strong absorbent paper for kitchen cleaning.',
+      image:
+        'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?q=80&w=1200&auto=format&fit=crop',
+    },
+  ];
+
+  return (
+    <main className="bg-[#f7fbfb] text-gray-800">
+      {/* Navbar */}
+      <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/90 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+          <div>
+            <h1 className="text-3xl font-bold text-teal-700">Smoothia</h1>
+            <p className="text-xs tracking-[0.3em] text-gray-400">
+              SOFT AS SILK
+            </p>
+          </div>
+
+          <nav className="hidden gap-8 text-sm font-medium md:flex">
+            <a href="#products" className="hover:text-teal-600">
+              Products
+            </a>
+            <a href="#why" className="hover:text-teal-600">
+              Why Smoothia
+            </a>
+            <a href="#about" className="hover:text-teal-600">
+              About
+            </a>
+            <a href="#wholesale" className="hover:text-teal-600">
+              Wholesale
+            </a>
+          </nav>
+
+          <button className="rounded-full bg-teal-600 px-5 py-3 text-sm font-semibold text-white hover:bg-teal-700">
+            Get a Quote
+          </button>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Wholesale</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-        </nav>
-        <button class="cta-button">Get a Quote</button>
-    </header>
+      </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">NATURAL · SOFT · RESPONSIBLE</div>
-            <h1>
-                100% VIRGIN PULP
-                <span>PREMIUM TISSUE PAPER PRODUCTS</span>
-            </h1>
-            <p>Soft and strong, naturally gentle.<br>Quality you can feel, care you can trust.</p>
-            <div class="hero-buttons">
-                <button class="btn-primary">View Products</button>
-                <button class="btn-secondary">Wholesale Inquiry</button>
-            </div>
-            <div class="hero-features">
-                <div class="feature-item"><span class="feature-icon">🍃</span> 100% Virgin Pulp</div>
-                <div class="feature-item"><span class="feature-icon">🛡️</span> Safe & Chemical Free</div>
-                <div class="feature-item"><span class="feature-icon">💪</span> Strong & Absorbent</div>
-                <div class="feature-item"><span class="feature-icon">☁️</span> Sustainable Choice</div>
-            </div>
-        </div>
-        <div class="hero-image">
-            <img src="https://i.imgur.com/placeholder.png" alt="Smoothia Tissue Products">
-            <!-- 替换为你的产品图片 -->
-        </div>
-    </section>
+      {/* Hero */}
+      <section className="mx-auto grid max-w-7xl gap-10 px-6 py-20 md:grid-cols-2 md:items-center">
+        <div>
+          <p className="mb-5 text-sm font-semibold uppercase tracking-[0.25em] text-teal-600">
+            Natural · Soft · Premium
+          </p>
 
-    <!-- Products Section -->
-    <section class="products-section">
-        <h2 class="section-title">Our Products</h2>
-        <p class="section-subtitle">Complete paper solutions for homes, businesses and workplaces.</p>
-        <div class="products-grid">
-            <div class="product-card">
-                <img src="https://i.imgur.com/toilet-roll.png" alt="Toilet Tissue">
-                <h3>Toilet Tissue</h3>
-                <p>Soft, strong and gentle for everyday comfort.</p>
-                <a href="#">View More →</a>
-            </div>
-            <div class="product-card">
-                <img src="https://i.imgur.com/facial-tissue.png" alt="Facial Tissue">
-                <h3>Facial Tissue</h3>
-                <p>Soft and delicate, perfect for your skin.</p>
-                <a href="#">View More →</a>
-            </div>
-            <div class="product-card">
-                <img src="https://i.imgur.com/kitchen-towel.png" alt="Kitchen Towel">
-                <h3>Kitchen Towel</h3>
-                <p>Strong absorbent, ideal for any kitchen task.</p>
-                <a href="#">View More →</a>
-            </div>
-            <div class="product-card">
-                <img src="https://i.imgur.com/bulk-box.png" alt="Bulk & Wholesale">
-                <h3>Bulk & Wholesale</h3>
-                <p>Competitive prices, reliable quality supply.</p>
-                <a href="#">View More →</a>
-            </div>
-        </div>
-    </section>
+          <h2 className="max-w-xl text-5xl font-bold leading-tight text-slate-800 md:text-6xl">
+            Premium Tissue Products For Modern Living
+          </h2>
 
-    <!-- Why Choose Us Section -->
-    <section class="why-choose-section">
-        <h2 class="section-title">Why Choose Smoothia?</h2>
-        <div class="features-grid">
-            <div class="feature-box">
-                <div class="feature-icon">🍃</div>
-                <h4>100% Virgin Pulp</h4>
-                <p>Premium raw material for natural comfort.</p>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon">🧻</div>
-                <h4>Soft & Thick</h4>
-                <p>Advanced technology for extra softness and strength.</p>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon">🛡️</div>
-                <h4>Safe & Chemical Free</h4>
-                <p>No harmful chemicals, safe for you and your family.</p>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon">💧</div>
-                <h4>Strong Absorbent</h4>
-                <p>Quick absorbency for a cleaner and easier life.</p>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon">♻️</div>
-                <h4>Sustainable Choice</h4>
-                <p>Eco-friendly packaging and responsible production.</p>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon">🏆</div>
-                <h4>Trusted Quality</h4>
-                <p>Reliable products trusted by thousands of customers.</p>
-            </div>
-        </div>
-    </section>
+          <p className="mt-6 max-w-lg text-lg leading-8 text-gray-500">
+            High-quality virgin pulp tissue paper products designed for homes,
+            businesses and wholesale supply across Australia.
+          </p>
 
-    <!-- About & Wholesale Section -->
-    <section class="about-wholesale-section">
-        <div class="about-section">
-            <h2>About Us</h2>
-            <p>Always Smooth Pty Ltd is an Australian-owned company dedicated to providing premium quality tissue paper products. We focus on excellence in raw materials, modern production and reliable service to meet the needs of our customers across Australia.</p>
-            <div class="about-image"></div>
-            <button class="btn-learn-more">Learn More</button>
-        </div>
-        <div class="wholesale-section">
-            <h3>Wholesale & Business Inquiry</h3>
-            <p>We provide flexible solutions for retailers, wholesalers, and businesses. Let's grow together.</p>
-            <div class="wholesale-buttons">
-                <button class="wholesale-btn-primary">Get a Quote</button>
-                <button class="wholesale-btn-secondary">Contact Us</button>
-            </div>
-            <div class="wholesale-features">
-                <div class="wholesale-feature">
-                    <div class="wholesale-feature-icon">🏷️</div>
-                    <p>Competitive Prices</p>
-                </div>
-                <div class="wholesale-feature">
-                    <div class="wholesale-feature-icon">📦</div>
-                    <p>Stable Supply Capacity</p>
-                </div>
-                <div class="wholesale-feature">
-                    <div class="wholesale-feature-icon">✂️</div>
-                    <p>Customised Solutions</p>
-                </div>
-                <div class="wholesale-feature">
-                    <div class="wholesale-feature-icon">🚚</div>
-                    <p>Fast & Reliable Delivery</p>
-                </div>
-            </div>
-        </div>
-    </section>
+          <div className="mt-10 flex gap-4">
+            <button className="rounded-full bg-teal-600 px-7 py-4 font-semibold text-white hover:bg-teal-700">
+              Explore Products
+            </button>
 
-    <!-- Newsletter Section -->
-    <section class="newsletter-section">
-        <div class="newsletter-title">
-            <span class="newsletter-icon">✉️</span>
-            <div>
-                <h4>Subscribe to our newsletter</h4>
-                <p style="font-size:0.75rem; color:var(--gray);">Get the latest news and offers.</p>
-            </div>
+            <button className="rounded-full border border-teal-200 bg-white px-7 py-4 font-semibold text-teal-700 hover:bg-teal-50">
+              Wholesale Inquiry
+            </button>
+          </div>
         </div>
-        <form class="newsletter-form">
-            <input type="email" class="newsletter-input" placeholder="Your email address">
-            <button type="submit" class="newsletter-btn">Subscribe</button>
-        </form>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-col">
-            <div class="footer-logo">Smoothia</div>
-            <p style="font-size:0.75rem; margin:0.5rem 0;">Soft as silk, strong in quality.<br>Care for your life, care for our planet.</p>
-            <div class="social-icons">
-                <span class="social-icon">f</span>
-                <span class="social-icon">🐦</span>
-                <span class="social-icon">in</span>
+        <div>
+          <img
+            src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?q=80&w=1400&auto=format&fit=crop"
+            alt="Smoothia Tissue"
+            className="rounded-[36px] shadow-2xl"
+          />
+        </div>
+      </section>
+
+      {/* Products */}
+      <section id="products" className="mx-auto max-w-7xl px-6 py-20">
+        <div className="mb-12 flex items-end justify-between">
+          <div>
+            <p className="mb-3 text-sm uppercase tracking-[0.25em] text-teal-600">
+              Our Products
+            </p>
+
+            <h3 className="text-4xl font-bold">Simple. Premium. Reliable.</h3>
+          </div>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-3">
+          {products.map((product) => (
+            <div
+              key={product.title}
+              className="overflow-hidden rounded-[28px] border border-gray-100 bg-white shadow-sm transition hover:-translate-y-2 hover:shadow-xl"
+            >
+              <img
+                src={product.image}
+                alt={product.title}
+                className="h-72 w-full object-cover"
+              />
+
+              <div className="p-7">
+                <h4 className="text-2xl font-semibold">{product.title}</h4>
+
+                <p className="mt-3 leading-7 text-gray-500">{product.desc}</p>
+              </div>
             </div>
+          ))}
         </div>
-        <div class="footer-col">
-            <h4>Products</h4>
-            <ul>
-                <li><a href="#">Toilet Tissue</a></li>
-                <li><a href="#">Facial Tissue</a></li>
-                <li><a href="#">Kitchen Towel</a></li>
-                <li><a href="#">Bulk & Wholesale</a></li>
-            </ul>
+      </section>
+
+      {/* Why Choose */}
+      <section id="why" className="bg-[#edf8f8] px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-14 text-center">
+            <p className="mb-3 text-sm uppercase tracking-[0.25em] text-teal-600">
+              Why Choose Smoothia
+            </p>
+
+            <h3 className="text-4xl font-bold">Trusted By Modern Businesses</h3>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-4">
+            <div className="rounded-[24px] bg-white p-8 shadow-sm">
+              <h4 className="text-xl font-semibold">100% Virgin Pulp</h4>
+              <p className="mt-3 text-gray-500">
+                Premium material for superior softness.
+              </p>
+            </div>
+
+            <div className="rounded-[24px] bg-white p-8 shadow-sm">
+              <h4 className="text-xl font-semibold">Soft & Thick</h4>
+              <p className="mt-3 text-gray-500">
+                Designed for comfort and durability.
+              </p>
+            </div>
+
+            <div className="rounded-[24px] bg-white p-8 shadow-sm">
+              <h4 className="text-xl font-semibold">Reliable Supply</h4>
+              <p className="mt-3 text-gray-500">
+                Stable wholesale solutions across Australia.
+              </p>
+            </div>
+
+            <div className="rounded-[24px] bg-white p-8 shadow-sm">
+              <h4 className="text-xl font-semibold">Eco Friendly</h4>
+              <p className="mt-3 text-gray-500">
+                Sustainable packaging and production.
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="footer-col">
-            <h4>Company</h4>
-            <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Our Factory</a></li>
-                <li><a href="#">Quality Assurance</a></li>
-                <li><a href="#">Sustainability</a></li>
-            </ul>
+      </section>
+
+      {/* About */}
+      <section
+        id="about"
+        className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 md:items-center"
+      >
+        <div>
+          <p className="mb-3 text-sm uppercase tracking-[0.25em] text-teal-600">
+            About Us
+          </p>
+
+          <h3 className="text-4xl font-bold leading-tight">
+            Australian Tissue Supplier With Premium Manufacturing
+          </h3>
+
+          <p className="mt-6 text-lg leading-8 text-gray-500">
+            Smoothia provides high-quality tissue paper products for retail,
+            hospitality, commercial and wholesale customers.
+          </p>
         </div>
-        <div class="footer-col">
-            <h4>Customer Service</h4>
-            <ul>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Shipping & Delivery</a></li>
-                <li><a href="#">Returns & Exchange</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
+
+        <img
+          src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1400&auto=format&fit=crop"
+          alt="Warehouse"
+          className="rounded-[36px] shadow-xl"
+        />
+      </section>
+
+      {/* Wholesale */}
+      <section
+        id="wholesale"
+        className="bg-gradient-to-r from-teal-500 to-cyan-400 px-6 py-20 text-white"
+      >
+        <div className="mx-auto max-w-7xl text-center">
+          <p className="mb-3 text-sm uppercase tracking-[0.25em] text-white/80">
+            Wholesale & Business Inquiry
+          </p>
+
+          <h3 className="mx-auto max-w-3xl text-5xl font-bold leading-tight">
+            Looking For A Reliable Tissue Supply Partner?
+          </h3>
+
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/90">
+            Contact Smoothia for wholesale pricing, product catalogue and long
+            term business partnerships.
+          </p>
+
+          <div className="mt-10 flex flex-wrap justify-center gap-5">
+            <button className="rounded-full bg-white px-8 py-4 font-semibold text-teal-700 hover:bg-slate-100">
+              Get a Quote
+            </button>
+
+            <button className="rounded-full border border-white/50 px-8 py-4 font-semibold hover:bg-white/10">
+              Contact Us
+            </button>
+          </div>
         </div>
-        <div class="footer-col">
-            <h4>Contact Us</h4>
-            <ul>
-                <li>📞 1300 766 625</li>
-                <li>✉️ info@alwayssmooth.com.au</li>
-                <li>📍 Factory 4/9 Holder Way, Malaga WA 6090 Australia</li>
-            </ul>
-        </div>
-        <div class="copyright">
-            © 2024 Always Smooth Pty Ltd. All Rights Reserved.
-        </div>
-    </footer>
-</body>
-</html>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-100 bg-white px-6 py-8 text-center text-sm text-gray-500">
+        © 2026 Smoothia · Premium Tissue Supplier Australia
+      </footer>
+    </main>
+  );
+}
